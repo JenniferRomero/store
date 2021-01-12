@@ -1,0 +1,37 @@
+<app-header (mensajeHijo)="search($event)"></app-header>
+<app-banner></app-banner>
+<app-deportes [hidden]="showFilter"></app-deportes>
+<section [hidden]="showFilter">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 title-productos">
+        <p>PRODUCTOS MAS BUSCADOS</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="swiper-container swiper-productos my-4">
+          <div class="swiper-wrapper" id="productos"></div>
+        </div>
+        <div class="swiper-button-next" id="swd-n"></div>
+        <div class="swiper-button-prev" id="swd-p"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section [hidden]="!showFilter">
+  <div class="row card-filter">
+    <div class="col-md-4 item" *ngFor="let item of arrayFilter | paginate: { itemsPerPage: 9, currentPage: p}">
+      <div class="row">
+        <div class="col-md-12">
+          <img src="{{item.imagen}}" alt="producto">
+        </div>
+        <div class="col-md-12">
+          <p>{{item.title}}</p>
+        </div>
+      </div>
+    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</section>
+<app-footer></app-footer>

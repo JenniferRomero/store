@@ -13,7 +13,6 @@ export class FooterComponent implements OnInit {
   }
 
   showItems(id) {
-    console.log(document.getElementById(id).classList.contains('open'));
     if (document.getElementById(id).classList.contains('open')) {
       document.getElementById(id).classList.remove('open');
     } else {

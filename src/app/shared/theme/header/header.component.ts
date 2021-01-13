@@ -8,7 +8,7 @@ import { NgForm } from '@angular/forms';
 })
 export class HeaderComponent implements OnInit {
   @Output() mensajeHijo = new EventEmitter<string>();
-  searchStringArt: any;
+  searchString: any;
 
   constructor() { }
 
@@ -16,11 +16,10 @@ export class HeaderComponent implements OnInit {
   }
 
   search(event) {
-    this.mensajeHijo.emit(this.searchStringArt);
+    this.mensajeHijo.emit(this.searchString);
   }
 
   showMenu() {
-    console.log(document.getElementById('nav-menu').classList.contains('nav-open'));
     if (document.getElementById('nav-menu').classList.contains('nav-open')) {
       document.getElementById('nav-menu').classList.replace('nav-open', 'nav-close');
     } else {

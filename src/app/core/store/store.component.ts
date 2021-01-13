@@ -1,9 +1,7 @@
 import { Component, Output, OnInit, EventEmitter, ViewChild, AfterViewInit, OnChanges } from '@angular/core';
 import Swiper from 'swiper';
 import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Virtual } from 'swiper/core';
 import { CurrencyPipe } from '@angular/common'
-import { HeaderComponent } from "../../shared/theme/header/header.component";
 
 
 @Component({
@@ -30,7 +28,6 @@ export class StoreComponent implements OnInit {
   getProductos() {
     this.categoriesService.getCategories().subscribe(
       (data: any) => {
-        console.log(data.children_categories);
         /*for (let i = 0; i < data.children_categories.length; i++) {
           this.getItems(data.children_categories[i].id);
         }*/
@@ -43,7 +40,6 @@ export class StoreComponent implements OnInit {
   }
 
   getItems(idCategory) {
-    console.log(idCategory);
     this.categoriesService.getItems(idCategory).subscribe(
       (data: any) => {
         for (let i = 0; i < data.results.length; i++) {
@@ -101,13 +97,11 @@ export class StoreComponent implements OnInit {
   }
 
   search(mensaje: string) {
-    console.log(mensaje);
     this.arrayFilter = [];
     if (mensaje != "") {
       this.showFilter = true;
       this.categoriesService.getItemName(mensaje).subscribe(
         (data: any) => {
-          console.log(data);
           for (let i = 0; i < data.results.length; i++) {
             if (this.arrayFilter.length <= 50) {
               this.arrayFilter.push({

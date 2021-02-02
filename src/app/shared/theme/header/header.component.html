@@ -1,0 +1,45 @@
+<section>
+  <div class="row m-0">
+    <div class="col-md-4 btn-menu">
+        <img class="menu" (click)="showMenu()" src="../../../../assets/icons/icon-menu.svg" alt="logo">
+        <img class="logo" src="../../../../assets/icons/logo.svg" alt="logo">
+        <img class="menu" src="../../../../assets/icons/buscar.svg" alt="lupa">
+        <img class="menu" src="../../../../assets/icons/icon-cart.svg" alt="">
+    </div>
+    <div class="col-md-5 py-2 d-f d-search">
+      <img src="../../../../assets/icons/buscar.svg" alt="lupa">
+      <input type="text" name="search" id="search" placeholder="Buscar aquí producto" [(ngModel)]="searchString" (keyup)="search($event)">
+    </div>
+    <div class="col-md-1 d-f compras">
+      <img class="cart" src="../../../../assets/icons/icon-cart.svg" alt="">
+    </div>
+    <div class="col-md-2 d-f sesion">
+      <img class="user" src="../../../../assets/icons/user.svg" alt="">
+      <p>Iniciar sesion</p>
+    </div>
+  </div>
+</section>
+
+<nav id="nav-menu" class="navbar navbar-expand-sm nav-open">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="item-menu" href="#">Hombre</a>
+    </li>
+    <li class="nav-item">
+      <a class="item-menu" href="#">Mujer</a>
+    </li>
+    <li class="nav-item">
+      <a class="item-menu" href="#">Junior</a>
+    </li>
+    <li class="nav-item">
+      <a class="item-menu" href="#">Niños</a>
+    </li>
+    <li class="nav-item">
+      <a class="item-menu" href="#">Accesorios</a>
+    </li>
+    <li class="nav-item">
+      <a class="item-menu" href="#">Ofertas</a>
+    </li>
+  </ul>
+</nav>
+

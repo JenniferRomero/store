@@ -1,0 +1,104 @@
+
+.btn-menu .menu{
+  display: none;
+}
+div .logo {
+  width: 90%;
+}
+div .cart {
+  width: 30px;
+}
+.d-f {
+  display: flex;
+  align-items: center;
+}
+.d-search img{
+  width: 30px;
+  position: absolute;
+  right: 0px;
+  margin: 0px 30px;
+}
+input {
+  width: 100%;
+  border: 0;
+  outline: none;
+  background: #EEEEEE;
+  border-radius: 6px;
+  opacity: 1;
+  padding: 5px 10px;
+  letter-spacing: 0px;
+  color: #6B6B6B;
+  opacity: 1;
+  font-size: 20px;
+}
+.compras {
+  justify-content: center;
+}
+div .user {
+  width: 30px;
+  margin: 0px 10px;
+}
+p {
+  margin-bottom: 0px;
+  font-size: 24px;
+  letter-spacing: 0px;
+  color: #3D3D3B;
+  opacity: 1;
+}
+.nav-open {
+  display: flex;
+}
+.nav-close {
+  display: none;
+}
+.navbar {
+  background-color: #000000;
+  justify-content: center;
+}
+.item-menu {
+  font-size: 31px;
+  text-align: left;
+  letter-spacing: 0px;
+  color: #FFFFFF;
+  opacity: 1;
+  padding: 0px 20px;
+  font-weight: bold;
+}
+.navbar-nav .nav-item {
+  border-left: 1px solid #ffffff;
+}
+.navbar-nav .nav-item:first-child {
+  border-left: none;
+}
+
+
+
+@media (max-width: 767px) {
+  div .btn-menu{
+    display: flex;
+  }
+  .btn-menu .menu{
+    display: block;
+    width: 30px;
+    margin: 0px 5px;
+  }
+  .btn-menu .logo{
+    width: 60%;
+  }
+  input {
+    display: none;
+  }
+  div .d-search, .sesion, .compras {
+    display: none;
+  }
+  .navbar {
+    background-color: #ffffff;
+    justify-content: left;
+  }
+  .item-menu {
+    color: #000000;
+  }
+  .navbar-nav .nav-item {
+    border-left: none;
+  }
+}

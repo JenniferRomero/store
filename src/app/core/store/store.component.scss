@@ -24,11 +24,11 @@
   padding: 0px 30px;
 }
 
-::ng-deep .swiper-button-prev, .swiper-button-next {
+::ng-deep #sw-productos .swiper-button-prev, .swiper-button-next {
   color: gray;
 }
 
-::ng-deep .swiper-button-next, .swiper-button-prev {
+::ng-deep #sw-productos .swiper-button-next, .swiper-button-prev {
   color: gray;
 }
 ::ng-deep .swiper-slide .img-card {

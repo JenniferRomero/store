@@ -9,29 +9,41 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-12">
-        <div class="swiper-container swiper-productos my-4">
-          <div class="swiper-wrapper" id="productos"></div>
-        </div>
-        <div class="swiper-button-next" id="swd-n"></div>
-        <div class="swiper-button-prev" id="swd-p"></div>
+      <div class="col-md-12 py-5" *ngIf="arrayProductos" id="sw-productos">
+        <swiper [slidesPerView]="4" [spaceBetween]="30" [navigation]="true" [breakpoints]="{'320': {'slidesPerView': '1', 'spaceBetween': '20'}, '480': { 'slidesPerView': '2', 'spaceBetween': '20'}, '640': { 'slidesPerView': '3', 'spaceBetween': '20'}, '1024': { 'slidesPerView': '4', 'spaceBetween': '30' }}">
+          <ng-template swiperSlide *ngFor="let product of arrayProductos">
+            <div class="row mx-5">
+              <div class="col-md-12 img-card">
+                <a target="_blank" [href]="product.link">
+                  <img [src]="product.imagen" alt="banner" />
+                </a>
+              </div>
+              <div class="col-md-12 title-card">{{product.title}}</div>
+              <div class="col-md-12 price-card">
+                {{product.precio}}
+              </div>
+            </div>
+          </ng-template>
+        </swiper>
       </div>
     </div>
   </div>
 </section>
 <section [hidden]="!showFilter">
   <div class="row card-filter">
-    <div class="col-md-4 item" *ngFor="let item of arrayFilter | paginate: { itemsPerPage: 9, currentPage: p}">
+    <div class="col-md-4 item" *ngFor="
+        let item of arrayFilter | paginate: { itemsPerPage: 9, currentPage: pageFilter }
+      ">
       <div class="row">
         <div class="col-md-12">
-          <img src="{{item.imagen}}" alt="producto">
+          <img src="{{ item.imagen }}" alt="producto" />
         </div>
         <div class="col-md-12">
-          <p>{{item.title}}</p>
+          <p>{{ item.title }}</p>
         </div>
       </div>
     </div>
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    <pagination-controls (pageChange)="pageFilter = $event"></pagination-controls>
   </div>
 </section>
 <app-footer></app-footer>

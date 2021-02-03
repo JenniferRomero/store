@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  endpointML: 'https://api.mercadolibre.com/'
 };

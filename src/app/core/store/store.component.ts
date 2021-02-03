@@ -1,4 +1,4 @@
-import { Component, Output, OnInit, EventEmitter, ViewChild, AfterViewInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import Swiper from 'swiper';
 import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
 import { CurrencyPipe } from '@angular/common'
@@ -28,9 +28,6 @@ export class StoreComponent implements OnInit {
   getProductos() {
     this.categoriesService.getCategories().subscribe(
       (data: any) => {
-        /*for (let i = 0; i < data.children_categories.length; i++) {
-          this.getItems(data.children_categories[i].id);
-        }*/
         let randomCategory = data.children_categories[Math.floor(Math.random() * data.children_categories.length)].id;
         this.getItems(randomCategory);
       },
@@ -42,17 +39,16 @@ export class StoreComponent implements OnInit {
   getItems(idCategory) {
     this.categoriesService.getItems(idCategory).subscribe(
       (data: any) => {
-        for (let i = 0; i < data.results.length; i++) {
-          if (this.arrayProductos.length <= 50) {
-            this.arrayProductos.push({
-              "title": data.results[i].title,
-              "precio": data.results[i].price,
-              "imagen": data.results[i].thumbnail,
-              "link": data.results[i].permalink
-            });
-          }
-        }
-        this.estructuraSwiper(this.arrayProductos);
+        this.arrayProductos = data.results.slice(0, 50).map((product, index, array) => {
+          let tempProducts = {
+                  "title": product.title,
+                  "precio": product.price,
+                  "imagen": product.thumbnail,
+                  "link": product.permalink
+                };
+          return tempProducts;
+      });
+      this.estructuraSwiper(this.arrayProductos);
       },
       error => {
         console.log(error);
@@ -79,7 +75,7 @@ export class StoreComponent implements OnInit {
 
     document.getElementById('productos').innerHTML = htmlData;
 
-    var swiperDos = new Swiper('.swiper-productos', {
+    let swiperDos = new Swiper('.swiper-productos', {
       slidesPerView: 4,
       spaceBetween: 30,
       navigation: {
@@ -102,16 +98,15 @@ export class StoreComponent implements OnInit {
       this.showFilter = true;
       this.categoriesService.getItemName(mensaje).subscribe(
         (data: any) => {
-          for (let i = 0; i < data.results.length; i++) {
-            if (this.arrayFilter.length <= 50) {
-              this.arrayFilter.push({
-                "title": data.results[i].title,
-                "precio": data.results[i].price,
-                "imagen": data.results[i].thumbnail,
-                "link": data.results[i].permalink
-              });
-            }
-          }
+          this.arrayFilter = data.results.slice(0, 50).map((product, index, array) => {
+              let tempProductsFilter = {
+                      "title": product.title,
+                      "precio": product.price,
+                      "imagen": product.thumbnail,
+                      "link": product.permalink
+                    };
+              return tempProductsFilter;
+          });
         },
         error => {
           console.log(error);

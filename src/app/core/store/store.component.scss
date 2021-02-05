@@ -3,7 +3,7 @@
   height: 300px;
 }
 
-::ng-deep .swiper-productos .swiper-slide {
+:host ::ng-deep .swiper-productos .swiper-slide {
   text-align: center;
   font-size: 18px;
   background: #fff;
@@ -24,17 +24,17 @@
   padding: 0px 30px;
 }
 
-::ng-deep #sw-productos .swiper-button-prev, .swiper-button-next {
+:host ::ng-deep #sw-productos .swiper-button-prev, .swiper-button-next {
   color: gray;
 }
 
-::ng-deep #sw-productos .swiper-button-next, .swiper-button-prev {
+:host ::ng-deep #sw-productos .swiper-button-next, .swiper-button-prev {
   color: gray;
 }
-::ng-deep .swiper-slide .img-card {
+:host ::ng-deep .swiper-slide .img-card {
   height: 100px;
 }
-::ng-deep .swiper-slide .title-card {
+:host ::ng-deep .swiper-slide .title-card {
   font-size: 14px;
   text-align: left;
   font-family: 'helvetica-neue-bold';
@@ -42,7 +42,7 @@
   color: #000000;
   font-weight: bold;
 }
-::ng-deep .swiper-slide .price-card {
+:host ::ng-deep .swiper-slide .price-card {
   font-size: 18px;
   text-align: right;
   font-family: 'helvetica-neue-bold';

@@ -12,54 +12,10 @@ export interface Categorias {
   id: string;
   meta_categ_id: null;
   name: string;
-  path_from_root: {
-    id: string;
-    name: string;
-  };
+  path_from_root: Array<PathFromRoot>
   permalink: string;
   picture: string;
-  settings: {
-    adult_content: boolean;
-    buyer_protection_programs: [];
-    buying_allowed: boolean;
-    buying_modes: [];
-    catalog_domain: string;
-    coverage_areas: string;
-    currencies: [];
-    fragile: boolean;
-    immediate_payment: string;
-    item_conditions: [];
-    items_reviews_allowed: boolean;
-    listing_allowed: boolean;
-    max_description_length: number;
-    max_pictures_per_item: number;
-    max_pictures_per_item_var: number;
-    max_sub_title_length: number;
-    max_title_length: number;
-    maximum_price: null;
-    minimum_price: number;
-    mirror_category: null;
-    mirror_master_category: null;
-    mirror_slave_categories: [];
-    price: string;
-    reservation_allowed: string;
-    restrictions: [];
-    rounded_address: boolean;
-    seller_contact: string;
-    shipping_modes: [];
-    shipping_options: [];
-    shipping_profile: string;
-    show_contact_information: boolean;
-    simple_shipping: string;
-    status: string;
-    stock: string;
-    sub_vertical: null;
-    subscribable: boolean;
-    tags: {};
-    vertical: null;
-    vip_subdomain: string;
-    total_items_in_this_category: number;
-  };
+  // settings: Array<settingsCategories>;
 }
 
 export interface ProductosML {
@@ -205,3 +161,52 @@ interface ChildCategory {
   name: string;
   total_items_in_this_category: number;
 };
+
+
+interface PathFromRoot{
+  id: string;
+  name: string;
+}
+
+interface settingsCategories {
+  adult_content: boolean;
+  buyer_protection_programs: Array<string>;
+  buying_allowed: boolean;
+  buying_modes: Array<string>;
+  catalog_domain: string;
+  coverage_areas: string;
+  currencies: Array<string>;
+  fragile: boolean;
+  immediate_payment: string;
+  item_conditions: Array<string>;
+  items_reviews_allowed: boolean;
+  listing_allowed: boolean;
+  max_description_length: number;
+  max_pictures_per_item: number;
+  max_pictures_per_item_var: number;
+  max_sub_title_length: number;
+  max_title_length: number;
+  maximum_price: null;
+  minimum_price: number;
+  mirror_category: null;
+  mirror_master_category: null;
+  mirror_slave_categories: Array<string>;
+  price: string;
+  reservation_allowed: string;
+  restrictions: Array<string>;
+  rounded_address: boolean;
+  seller_contact: string;
+  shipping_modes: Array<string>;
+  shipping_options: Array<string>;
+  shipping_profile: string;
+  show_contact_information: boolean;
+  simple_shipping: string;
+  status: string;
+  stock: string;
+  sub_vertical: null;
+  subscribable: boolean;
+  tags: {};
+  vertical: null;
+  vip_subdomain: string;
+  total_items_in_this_category: number;
+}

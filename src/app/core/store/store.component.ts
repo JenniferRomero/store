@@ -50,10 +50,8 @@ export class StoreComponent implements OnInit {
   }
 
   getProductos() {
-    console.log('Entre getProductos')
     this.categoriesService.getCategories().subscribe(
       (data: Categorias) => {
-        console.log('Hello world')
         this.categories = data;
         const { id } = this.categories.children_categories[
           Math.floor(Math.random() * data.children_categories.length)

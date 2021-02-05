@@ -1,6 +1,7 @@
 import {
   Categorias,
   ProductosML,
+  Productos
 } from 'src/app/shared/services/categories/productos';
 import { Component, OnInit } from '@angular/core';
 // import Swiper core and required components
@@ -26,13 +27,12 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   providers: [CategoriesService, CurrencyPipe],
 })
 export class StoreComponent implements OnInit {
-  arrayProductos: [];
-  arrayFilter = [];
+  arrayProductos: Productos[];
+  arrayFilter: Productos[];
   message: string;
   showFilter = false;
   pageFilter = 1;
   categories: Categorias;
-  pruebaP: Categorias;
 
   constructor(
     public categoriesService: CategoriesService
@@ -45,8 +45,6 @@ export class StoreComponent implements OnInit {
 
   async pruebaPromise() {
     const respuesta = await this.categoriesService.getCategories2();
-    this.pruebaP = respuesta;
-    console.log(respuesta);
   }
 
   getProductos() {
@@ -64,7 +62,7 @@ export class StoreComponent implements OnInit {
     );
   }
 
-  getItems(idCategory) {
+  getItems(idCategory: string) {
     this.categoriesService
       .getItems(idCategory)
       .pipe(
@@ -79,10 +77,11 @@ export class StoreComponent implements OnInit {
       )
       .subscribe(
         (data: any) => {
+          console.log(JSON.stringify(data));
           this.arrayProductos = data;
         },
         (error) => {
-          console.log(error);
+          this.arrayProductos = null;
         }
       );
   }
@@ -108,7 +107,7 @@ export class StoreComponent implements OnInit {
             this.arrayFilter = data;
           },
           (error) => {
-            console.log(error);
+            this.arrayFilter = null;
           }
         );
     } else {

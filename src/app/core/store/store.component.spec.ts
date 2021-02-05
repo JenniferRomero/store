@@ -1,5 +1,13 @@
-import { ComponentFixture, TestBed, async, fakeAsync, flush, tick } from '@angular/core/testing';
-import { MockCat, MockCategories } from 'src/app/shared/services/categories/mock-categories';
+import {
+  ComponentFixture,
+  TestBed,
+  async,
+  fakeAsync,
+  flush,
+} from '@angular/core/testing';
+import {
+  MockCategories,
+} from 'src/app/shared/services/categories/mock-categories';
 import { of, throwError } from 'rxjs';
 
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -7,6 +15,7 @@ import { CategoriesService } from 'src/app/shared/services/categories/categories
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { StoreComponent } from './store.component';
+import { MockProductos, MockProductosML } from 'src/app/shared/services/categories/mock-productos';
 
 describe('StoreComponent', () => {
   let component: StoreComponent;
@@ -18,9 +27,8 @@ describe('StoreComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       declarations: [StoreComponent],
       providers: [CategoriesService],
-      imports: [NgxPaginationModule, HttpClientTestingModule]
-    })
-      .compileComponents();
+      imports: [NgxPaginationModule, HttpClientTestingModule],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -47,28 +55,65 @@ describe('StoreComponent', () => {
     expect(component.search(null)).toBeFalsy();
   });
 
-  it('should call cargarDatos if when consulting the summary it brings data', () => {
-      const getItems = spyOn(component, 'getItems')
-      const mockResumen = MockCategories;
-      spyOn(component.categoriesService, 'getCategories').and.returnValue(
-        of(mockResumen)
-      );
-      component.getProductos()
-      expect(component.categories).toEqual(mockResumen);
-      expect(getItems).toHaveBeenCalled();
-    });
+  it('should call getProductos', () => {
+    const getItems = spyOn(component, 'getItems');
+    const mockResumen = MockCategories;
+    spyOn(component.categoriesService, 'getCategories').and.returnValue(
+      of(mockResumen)
+    );
+    component.getProductos();
+    expect(component.categories).toEqual(mockResumen);
+    expect(getItems).toHaveBeenCalled();
+  });
+
+  it('should call getProductos throw an error ', () => {
+    const getItems = spyOn(component, 'getItems');
+    spyOn(component.categoriesService, 'getCategories').and.returnValue(
+      throwError(null)
+    );
+    component.getProductos();
+    expect(component.categories).toBeNull();
+    expect(getItems).not.toHaveBeenCalled();
+  });
 
 
-    it('should throw an error ', () => {
-      const getItems = spyOn(component, 'getItems')
-      spyOn(component.categoriesService, 'getCategories').and.returnValue(
-        throwError(null)
-      );
-      component.getProductos()
-      expect(component.categories).toBeNull()
-      expect(getItems).not.toHaveBeenCalled();
-    });
+  it('should call getItems', () => {
+    const mockProML = MockProductosML;
+    const mockPro = MockProductos;
+    spyOn(component.categoriesService, 'getItems').and.returnValue(
+      of(mockProML)
+    );
+    component.getItems('MCO157281');
+    expect(component.arrayProductos).toEqual(mockPro);
+
+  });
+
+  it('should call getItems throw an error ', () => {
+    spyOn(component.categoriesService, 'getItems').and.returnValue(
+      throwError(null)
+    );
+    component.getItems('MCO157281');
+    expect(component.arrayProductos).toBeNull();
+  });
+
+
+  it('should call search', () => {
+    const mockProML = MockProductosML;
+    const mockPro = MockProductos;
+    spyOn(component.categoriesService, 'getItemName').and.returnValue(
+      of(mockProML)
+    );
+    component.search('vestidos');
+    expect(component.arrayFilter).toEqual(mockPro);
+
+  });
+
+  it('should call search throw an error ', () => {
+    spyOn(component.categoriesService, 'getItemName').and.returnValue(
+      throwError(null)
+    );
+    component.search('vestidos');
+    expect(component.arrayFilter).toBeNull();
+  });
 
 });
-
-

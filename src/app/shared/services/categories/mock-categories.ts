@@ -1,12 +1,4 @@
-import { Observable, of } from "rxjs";
 import { Categorias } from "./productos";
-
-export class MockCat {
-
-  public getCategories(): Observable<Categorias> {
-    return of(MockCategories);
-  }
-}
 
 export const MockCategories:Categorias = {
   id: 'MCO1430',

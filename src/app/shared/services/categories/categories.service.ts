@@ -23,7 +23,7 @@ export class CategoriesService {
     return this.http.get<Categorias>(`${this.path}categories/MCO1430`).toPromise();
   }
 
-  getItems(idCategory: number): Observable<ProductosML> {
+  getItems(idCategory: string): Observable<ProductosML> {
     return this.http.get<ProductosML>(`${this.path}sites/MCO/search?category=${idCategory}`);
   }
 

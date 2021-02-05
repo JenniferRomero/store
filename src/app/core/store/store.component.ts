@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
-import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
-import { CurrencyPipe } from '@angular/common';
-// import Swiper core and required components
-import SwiperCore, {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-} from 'swiper/core';
-import { map } from 'rxjs/operators';
 import {
   Categorias,
   ProductosML,
 } from 'src/app/shared/services/categories/productos';
+import { Component, OnInit } from '@angular/core';
+// import Swiper core and required components
+import SwiperCore, {
+  A11y,
+  Navigation,
+  Pagination,
+  Scrollbar,
+} from 'swiper/core';
+
+import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
+import { CurrencyPipe } from '@angular/common';
 import { MockCategories } from 'src/app/shared/services/categories/mock-categories';
+import { map } from 'rxjs/operators';
+
 // install Swiper components
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
@@ -33,7 +35,7 @@ export class StoreComponent implements OnInit {
   pruebaP: Categorias;
 
   constructor(
-    private categoriesService: CategoriesService
+    public categoriesService: CategoriesService
   ) {}
 
   ngOnInit(): void {
@@ -48,8 +50,10 @@ export class StoreComponent implements OnInit {
   }
 
   getProductos() {
+    console.log('Entre getProductos')
     this.categoriesService.getCategories().subscribe(
       (data: Categorias) => {
+        console.log('Hello world')
         this.categories = data;
         const { id } = this.categories.children_categories[
           Math.floor(Math.random() * data.children_categories.length)
@@ -57,7 +61,7 @@ export class StoreComponent implements OnInit {
         this.getItems(id);
       },
       (error) => {
-        console.log(error);
+        this.categories = null;
       }
     );
   }

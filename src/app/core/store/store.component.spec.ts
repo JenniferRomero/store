@@ -1,12 +1,12 @@
-import { async, ComponentFixture, fakeAsync, flush, TestBed, tick } from '@angular/core/testing';
-import { NgxPaginationModule } from 'ngx-pagination';
-
+import { ComponentFixture, TestBed, async, fakeAsync, flush, tick } from '@angular/core/testing';
 import { MockCat, MockCategories } from 'src/app/shared/services/categories/mock-categories';
-import { StoreComponent } from './store.component';
-import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
-import { of } from 'rxjs';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { of, throwError } from 'rxjs';
+
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { StoreComponent } from './store.component';
 
 describe('StoreComponent', () => {
   let component: StoreComponent;
@@ -15,12 +15,12 @@ describe('StoreComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-      declarations: [ StoreComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      declarations: [StoreComponent],
       providers: [CategoriesService],
       imports: [NgxPaginationModule, HttpClientTestingModule]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -30,7 +30,7 @@ describe('StoreComponent', () => {
     fixture.detectChanges();
   });
 
-  afterEach( fakeAsync(() => {
+  afterEach(fakeAsync(() => {
     flush();
   }));
 
@@ -48,38 +48,26 @@ describe('StoreComponent', () => {
   });
 
   it('should call cargarDatos if when consulting the summary it brings data', () => {
-    const mockResumen = MockCategories;
-    spyOn(service, 'getCategories').and.returnValue(
-      of(mockResumen)
-    );
-
-    service.getCategories().subscribe((data=>{
-      console.log(component.categories);
-      component.categories = data;
-      expect(data).toBeTruthy();
-      expect(data).toEqual(mockResumen);
-    }));
-    //tick(100);
-
-    expect(mockResumen).toBeDefined();
-    //expect(spy).toHaveBeenCalled();
-  });
+      const getItems = spyOn(component, 'getItems')
+      const mockResumen = MockCategories;
+      spyOn(component.categoriesService, 'getCategories').and.returnValue(
+        of(mockResumen)
+      );
+      component.getProductos()
+      expect(component.categories).toEqual(mockResumen);
+      expect(getItems).toHaveBeenCalled();
+    });
 
 
-  it('shouldpromise', fakeAsync (() => {
-    const mockResumen = MockCategories;
-    spyOn(service, 'getCategories2').and.returnValue(
-      Promise.resolve(mockResumen)
-    );
-
-    const spy = spyOn(component, 'pruebaPromise');
-    component.pruebaPromise();
-    tick(100);
-    console.log('component.pruebaP');
-    console.log(component.pruebaP);
-    expect(component.pruebaP).toEqual(mockResumen);
-    expect(spy).toHaveBeenCalled();
-  }))
+    it('should throw an error ', () => {
+      const getItems = spyOn(component, 'getItems')
+      spyOn(component.categoriesService, 'getCategories').and.returnValue(
+        throwError(null)
+      );
+      component.getProductos()
+      expect(component.categories).toBeNull()
+      expect(getItems).not.toHaveBeenCalled();
+    });
 
 });
 

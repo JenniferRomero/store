@@ -50,11 +50,6 @@ describe('StoreComponent', () => {
     expect(component.getItems('MCO157281')).toBeFalsy();
   });
 
-  it('function search', () => {
-    expect(component.search('vestidos')).toBeFalsy();
-    expect(component.search(null)).toBeFalsy();
-  });
-
   it('should call getProductos', () => {
     const getItems = spyOn(component, 'getItems');
     const mockResumen = MockCategories;
@@ -94,26 +89,6 @@ describe('StoreComponent', () => {
     );
     component.getItems('MCO157281');
     expect(component.arrayProductos).toBeNull();
-  });
-
-
-  it('should call search', () => {
-    const mockProML = MockProductosML;
-    const mockPro = MockProductos;
-    spyOn(component.categoriesService, 'getItemName').and.returnValue(
-      of(mockProML)
-    );
-    component.search('vestidos');
-    expect(component.arrayFilter).toEqual(mockPro);
-
-  });
-
-  it('should call search throw an error ', () => {
-    spyOn(component.categoriesService, 'getItemName').and.returnValue(
-      throwError(null)
-    );
-    component.search('vestidos');
-    expect(component.arrayFilter).toBeNull();
   });
 
 });

@@ -1,7 +1,6 @@
-<app-header (mensajeHijo)="search($event)"></app-header>
 <app-banner></app-banner>
-<app-deportes [hidden]="showFilter"></app-deportes>
-<section [hidden]="showFilter">
+<app-deportes></app-deportes>
+<section>
   <div class="container">
     <div class="row">
       <div class="col-md-12 title-productos">
@@ -10,12 +9,13 @@
     </div>
     <div class="row">
       <div class="col-md-12 py-5" *ngIf="arrayProductos" id="sw-productos">
-        <swiper [slidesPerView]="4" [spaceBetween]="30" [navigation]="true" [breakpoints]="{'320': {'slidesPerView': '1', 'spaceBetween': '20'}, '480': { 'slidesPerView': '2', 'spaceBetween': '20'}, '640': { 'slidesPerView': '3', 'spaceBetween': '20'}, '1024': { 'slidesPerView': '4', 'spaceBetween': '30' }}">
+        <swiper [slidesPerView]="4" [spaceBetween]="30" [navigation]="true"
+          [breakpoints]="{'320': {'slidesPerView': '1', 'spaceBetween': '20'}, '480': { 'slidesPerView': '2', 'spaceBetween': '20'}, '640': { 'slidesPerView': '3', 'spaceBetween': '20'}, '1024': { 'slidesPerView': '4', 'spaceBetween': '30' }}">
           <ng-template swiperSlide *ngFor="let product of arrayProductos">
             <div class="row mx-5">
               <div class="col-md-12 img-card">
-                <a target="_blank" [href]="product.link">
-                  <img [src]="product.imagen" alt="banner" />
+                <a routerLink="detail/1/{{categoryId}}/{{product.id}}">
+                    <img [src]="product.imagen" alt="banner" />
                 </a>
               </div>
               <div class="col-md-12 title-card">{{product.title}}</div>
@@ -29,21 +29,3 @@
     </div>
   </div>
 </section>
-<section [hidden]="!showFilter">
-  <div class="row card-filter">
-    <div class="col-md-4 item" *ngFor="
-        let item of arrayFilter | paginate: { itemsPerPage: 9, currentPage: pageFilter }
-      ">
-      <div class="row">
-        <div class="col-md-12">
-          <img src="{{ item.imagen }}" alt="producto" />
-        </div>
-        <div class="col-md-12">
-          <p>{{ item.title }}</p>
-        </div>
-      </div>
-    </div>
-    <pagination-controls (pageChange)="pageFilter = $event"></pagination-controls>
-  </div>
-</section>
-<app-footer></app-footer>

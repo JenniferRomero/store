@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './theme/footer/footer.component';
 import { HeaderComponent } from './theme/header/header.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { HeaderComponent } from './theme/header/header.component';
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule
   ],
   providers: [

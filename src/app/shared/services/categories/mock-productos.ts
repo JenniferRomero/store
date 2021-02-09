@@ -2,25 +2,31 @@ import { ProductosML, Productos } from './productos';
 
 export const MockProductos: Productos[] = [
   {
+    id: 'XYZ',
     title: 'Saco - Ruana Piel De Durazno. Termico Suave Al Tacto ',
     precio: 44900,
     imagen: 'http://mco-s2-p.mlstatic.com/896906-MCO44251216398_122020-I.jpg',
     link:
       'https://articulo.mercadolibre.com.co/MCO-551091701-saco-ruana-piel-de-durazno-termico-suave-al-tacto-_JM',
+    cantidad: 0
   },
   {
+    id: 'XYZ2',
     title: 'Sueter Sweater Cardigan Trendy Hombre Envio Gratis',
     precio: 74900,
     imagen: 'http://mco-s2-p.mlstatic.com/986364-MCO31871404916_082019-I.jpg',
     link:
       'https://articulo.mercadolibre.com.co/MCO-531060411-sueter-sweater-cardigan-trendy-hombre-envio-gratis-_JM',
+    cantidad: 0
   },
   {
+    id: 'XYZ3',
     title: 'Chaleco Acolchado Enguatado Dotacion Tipo Periodista',
     precio: 38000,
     imagen: 'http://mco-s2-p.mlstatic.com/687122-MCO42107909252_062020-I.jpg',
     link:
       'https://articulo.mercadolibre.com.co/MCO-565220527-chaleco-acolchado-enguatado-dotacion-tipo-periodista-_JM',
+    cantidad: 0
   },
 ];
 

@@ -34,6 +34,9 @@
 :host ::ng-deep .swiper-slide .img-card {
   height: 100px;
 }
+.img-card a img {
+  height: 100%;
+}
 :host ::ng-deep .swiper-slide .title-card {
   font-size: 14px;
   text-align: left;
@@ -55,20 +58,4 @@
   font-family: 'helvetica-neue-bold';
   padding: 20px 0px;
   text-align: center;
-}
-.card-filter {
-  margin: 0px;
-  justify-content: center;
-  padding: 20px 0px;
-}
-.card-filter .item{
-  margin: 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-.card-filter .item p{
-  font-size: 16px;
-  font-family: "helvetica-neue-bold";
 }

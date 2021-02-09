@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Categorias, ProductosML } from './productos';
+import { Categorias, Productos, ProductosML } from './productos';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -17,10 +17,6 @@ export class CategoriesService {
 
   getCategories(): Observable<Categorias> {
     return this.http.get<Categorias>(`${this.path}categories/MCO1430`);
-  }
-
-  getCategories2(): Promise<Categorias> {
-    return this.http.get<Categorias>(`${this.path}categories/MCO1430`).toPromise();
   }
 
   getItems(idCategory: string): Observable<ProductosML> {

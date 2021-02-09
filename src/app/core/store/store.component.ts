@@ -14,7 +14,6 @@ import SwiperCore, {
 
 import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
 import { CurrencyPipe } from '@angular/common';
-import { MockCategories } from 'src/app/shared/services/categories/mock-categories';
 import { map } from 'rxjs/operators';
 
 // install Swiper components
@@ -28,11 +27,8 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 })
 export class StoreComponent implements OnInit {
   arrayProductos: Productos[];
-  arrayFilter: Productos[];
-  message: string;
-  showFilter = false;
-  pageFilter = 1;
   categories: Categorias;
+  categoryId: string;
 
   constructor(
     public categoriesService: CategoriesService
@@ -40,11 +36,6 @@ export class StoreComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProductos();
-    this.pruebaPromise();
-  }
-
-  async pruebaPromise() {
-    const respuesta = await this.categoriesService.getCategories2();
   }
 
   getProductos() {
@@ -63,55 +54,28 @@ export class StoreComponent implements OnInit {
   }
 
   getItems(idCategory: string) {
+    this.categoryId = idCategory;
     this.categoriesService
       .getItems(idCategory)
       .pipe(
         map((data: ProductosML) =>
           data.results.slice(0, 54).map((item) => ({
+            id: item.id,
             title: item.title,
             precio: item.price,
             imagen: item.thumbnail,
             link: item.permalink,
+            cantidad: 1
           }))
         )
       )
       .subscribe(
         (data: any) => {
-          console.log(JSON.stringify(data));
           this.arrayProductos = data;
         },
         (error) => {
           this.arrayProductos = null;
         }
       );
-  }
-
-  search(mensaje: string) {
-    this.arrayFilter = [];
-    if (mensaje) {
-      this.showFilter = true;
-      this.categoriesService
-        .getItemName(mensaje)
-        .pipe(
-          map((data: ProductosML) =>
-            data.results.slice(0, 54).map((item) => ({
-              title: item.title,
-              precio: item.price,
-              imagen: item.thumbnail,
-              link: item.permalink,
-            }))
-          )
-        )
-        .subscribe(
-          (data: any) => {
-            this.arrayFilter = data;
-          },
-          (error) => {
-            this.arrayFilter = null;
-          }
-        );
-    } else {
-      this.showFilter = false;
-    }
   }
 }

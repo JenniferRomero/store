@@ -1,0 +1,19 @@
+<section>
+  <div class="row card-filter">
+    <div class="col-md-4 item" *ngFor="
+        let item of arrayFilter | paginate: { itemsPerPage: 9, currentPage: pageFilter }
+      ">
+      <div class="row">
+        <div class="col-md-12">
+          <a routerLink="/store/detail/2/message/{{item.id}}">
+            <img src="{{ item.imagen }}" alt="producto" />
+          </a>
+        </div>
+        <div class="col-md-12">
+          <p>{{ item.title }}</p>
+        </div>
+      </div>
+    </div>
+    <pagination-controls (pageChange)="pageFilter = $event"></pagination-controls>
+  </div>
+</section>

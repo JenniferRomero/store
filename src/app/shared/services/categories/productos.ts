@@ -1,8 +1,10 @@
 export interface Productos {
+  id: string;
   title: string;
   precio: number;
   imagen: string;
   link: string;
+  cantidad: number;
 }
 export interface Categorias {
   attributable: boolean;

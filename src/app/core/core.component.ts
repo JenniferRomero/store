@@ -16,6 +16,7 @@ import { Router} from '@angular/router';
 })
 export class CoreComponent implements OnInit {
 
+    // <!-- nuevo -->
   arrayFilter: Productos[];
   showFilter = false;
   constructor(

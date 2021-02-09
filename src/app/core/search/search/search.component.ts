@@ -16,6 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class SearchComponent implements OnInit {
+  // <!-- nuevo -->
   arrayFilter: Productos[];
   message: string;
   showFilter = false;

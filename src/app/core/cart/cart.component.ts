@@ -8,7 +8,7 @@ import { Productos } from 'src/app/shared/services/categories/productos';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-
+  // <!-- nuevo -->
   public productosList: Array<Productos>;
   public totalPrecio = 0;
   public totalCantidad = 0;
@@ -17,9 +17,6 @@ export class CartComponent implements OnInit {
   constructor(private cartService:CartService) { }
 
   ngOnInit() {
-
-    console.log(this.cartService.currentDataCart$);
-
     this.cartService.currentDataCart$.subscribe(resp=>{
       if(resp) {
         this.productosList = resp;

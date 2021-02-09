@@ -12,6 +12,8 @@ import { Productos, ProductosML } from 'src/app/shared/services/categories/produ
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
+  // <!-- nuevo -->
+
   product: Productos = {id: '',title: '',precio: 0,imagen: '',link:'', cantidad: 0};
   tipo: string;
   filter: string;

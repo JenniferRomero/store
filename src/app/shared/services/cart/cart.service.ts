@@ -8,6 +8,7 @@ import { Productos } from '../categories/productos';
 })
 export class CartService {
 
+    // <!-- nuevo -->
   private cart = new BehaviorSubject<Array<Productos>>(null);
   public currentDataCart$ = this.cart.asObservable();
 

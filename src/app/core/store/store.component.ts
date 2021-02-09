@@ -26,6 +26,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
   providers: [CategoriesService, CurrencyPipe],
 })
 export class StoreComponent implements OnInit {
+  // <!-- modificado -->
   arrayProductos: Productos[];
   categories: Categorias;
   categoryId: string;

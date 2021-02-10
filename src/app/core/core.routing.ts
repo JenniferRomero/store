@@ -6,6 +6,7 @@ import { DetailComponent } from './detail/detail.component';
 import { SearchComponent } from './search/search/search.component';
 import { CartComponent } from './cart/cart.component';
 
+    // <!-- nuevo -->
 const routes: Routes = [
   {
     path: 'store',

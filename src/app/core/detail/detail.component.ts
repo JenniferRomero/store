@@ -12,6 +12,8 @@ import { Productos, ProductosML } from 'src/app/shared/services/categories/produ
   styleUrls: ['./detail.component.scss']
 })
 export class DetailComponent implements OnInit {
+  // <!-- nuevo -->
+
   product: Productos = {id: '',title: '',precio: 0,imagen: '',link:'', cantidad: 0};
   tipo: string;
   filter: string;
@@ -30,7 +32,7 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.tipo==='1') {
-        this.getItems(this.filter);
+      this.getItems(this.filter);
     } else {
       this.search(this.filter);
     }
@@ -40,20 +42,24 @@ export class DetailComponent implements OnInit {
     this.categoriesService
       .getItems(idCategory)
       .pipe(
-        map((data: ProductosML) =>
-          data.results.filter(valor => valor.id === this.productId).map((item) => ({
-            id: item.id,
-            title: item.title,
-            precio: item.price,
-            imagen: item.thumbnail,
-            link: item.permalink,
-            cantidad: 1
-          }))
+        map((data: ProductosML) => {
+        const {id, title, price, thumbnail, permalink} = data.results.find(data => data.id === this.productId);
+
+        return { id,
+              title,
+              precio: price,
+              imagen: thumbnail,
+              link: permalink,
+              cantidad: 1
+            }
+          }
         )
       )
       .subscribe(
         (data: any) => {
-          this.product = data[0];
+          console.log(data);
+
+          this.product = data;
         },
         (error) => {
           this.product = null;
@@ -66,20 +72,23 @@ export class DetailComponent implements OnInit {
       this.categoriesService
         .getItemName(mensaje)
         .pipe(
-          map((data: ProductosML) =>
-            data.results.filter(valor => valor.id === this.productId).map((item) => ({
-              id: item.id,
-              title: item.title,
-              precio: item.price,
-              imagen: item.thumbnail,
-              link: item.permalink,
-              cantidad: 1
-            }))
+          map((data: ProductosML) =>{
+
+          const {id, title, price, thumbnail, permalink} = data.results.find(data => data.id === this.productId);
+
+          return { id,
+                title,
+                precio: price,
+                imagen: thumbnail,
+                link: permalink,
+                cantidad: 1
+              }
+            }
           )
         )
         .subscribe(
           (data: any) => {
-            this.product = data[0];
+            this.product = data;
           },
           (error) => {
             this.product = null;

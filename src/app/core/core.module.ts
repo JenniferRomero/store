@@ -14,6 +14,7 @@ import { SearchComponent } from './search/search/search.component';
 import { CartComponent } from './cart/cart.component';
 
 
+    // <!-- nuevo -->
 
 @NgModule({
   declarations: [

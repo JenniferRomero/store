@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from 'src/app/shared/services/cart/cart.service';
 import { Productos } from 'src/app/shared/services/categories/productos';
 
@@ -7,7 +7,7 @@ import { Productos } from 'src/app/shared/services/categories/productos';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit {
+export class CartComponent implements OnInit, OnDestroy {
   // <!-- nuevo -->
   public productosList: Array<Productos>;
   public totalPrecio = 0;
@@ -26,8 +26,11 @@ export class CartComponent implements OnInit {
     });
   }
 
-  public remove(producto:Productos) {
-   this.cartService.removeElementCart(producto);
+  remove(producto:Productos) {
+    this.cartService.removeElementCart(producto);
   }
 
+  ngOnDestroy(): void {
+    this.cartService.cart.unsubscribe();
+  }
 }

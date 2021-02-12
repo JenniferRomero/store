@@ -6,6 +6,11 @@ import { CategoriesService } from 'src/app/shared/services/categories/categories
 import { MockProductos } from 'src/app/shared/services/categories/mock-productos';
 import { Productos, ProductosML } from 'src/app/shared/services/categories/productos';
 
+import { Store, select } from '@ngrx/store';
+
+import { add, inc } from '../../ngrx/cart.actions';
+import { Cart } from '../../ngrx/cart.reducer';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -18,8 +23,10 @@ export class DetailComponent implements OnInit {
   tipo: string;
   filter: string;
   productId: string;
+  cart$: Observable<Cart>;
 
   constructor(
+    private store: Store<{ cart: Cart }>,
     public categoriesService: CategoriesService,
     public cartService: CartService,
     private route: ActivatedRoute,
@@ -31,6 +38,7 @@ export class DetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.cart$ = this.store.pipe(select('cart'));
     if (this.tipo==='1') {
       this.getItems(this.filter);
     } else {
@@ -101,5 +109,10 @@ export class DetailComponent implements OnInit {
   addCart(producto: Productos) {
     this.cartService.addCart(producto);
     this.router.navigateByUrl('store/cart');
+  }
+
+  addProduct(product) {
+    this.store.dispatch(add(product));
+    this.router.navigateByUrl('store/carrito');
   }
 }

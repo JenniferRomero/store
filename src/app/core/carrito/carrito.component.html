@@ -1,0 +1,39 @@
+<!-- nuevo -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="shopping-cart-items">
+        <li class="clearfix" *ngFor="let item of products$ | async">
+          <div class="row">
+            <div class="col-md-2">
+              <img [src]="item.imagen" alt="item1" />
+            </div>
+            <div class="col-md-6">
+              <span class="item-titulo">{{item.title}}</span>
+            </div>
+            <div class="col-md-1">
+              <span class="item-precio">${{item.precio}}</span>
+            </div>
+            <div class="col-md-1">
+              <span class="item-cantidad">Cantidad: {{item.cantidad}}</span>
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="btn btn-danger ml-4" (click)="remove(item)">Remove</button>
+            </div>
+          </div>
+
+        </li>
+      </ul>
+      <div><label>Count:</label> {{(count$ | async)}}</div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="shopping-cart-total">
+            <span class="lighter-text">Total:</span>
+            <span> {{(total$ | async).toFixed(2)}}</span>
+          </div>
+        </div>
+      </div>
+      <a [routerLink]="['/store']" routerLinkActive="router-link-active" class="button">Regresar</a>
+    </div>
+  </div>
+</div>

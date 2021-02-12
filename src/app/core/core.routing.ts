@@ -5,6 +5,7 @@ import { StoreComponent } from './store/store.component';
 import { DetailComponent } from './detail/detail.component';
 import { SearchComponent } from './search/search/search.component';
 import { CartComponent } from './cart/cart.component';
+import { CarritoComponent } from './carrito/carrito.component';
 
     // <!-- nuevo -->
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: 'detail/:tipo/:filtro/:id', component: DetailComponent },
       { path: 'search/:text', component: SearchComponent },
       { path: 'cart', component: CartComponent },
+      { path: 'carrito', component: CarritoComponent },
     ]
   }
 ];

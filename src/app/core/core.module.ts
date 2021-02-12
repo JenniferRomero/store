@@ -12,6 +12,7 @@ import { DetailComponent } from './detail/detail.component';
 import { CoreComponent } from './core.component';
 import { SearchComponent } from './search/search/search.component';
 import { CartComponent } from './cart/cart.component';
+import { CarritoComponent } from './carrito/carrito.component';
 
 
     // <!-- nuevo -->
@@ -22,7 +23,8 @@ import { CartComponent } from './cart/cart.component';
     StoreComponent,
     DetailComponent,
     SearchComponent,
-    CartComponent
+    CartComponent,
+    CarritoComponent
   ],
   imports: [
     CommonModule,

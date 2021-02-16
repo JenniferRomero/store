@@ -10,6 +10,8 @@ import { CoreModule } from './core/core.module';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { cartReducer } from './ngrx/cart.reducer'
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    StoreModule.forRoot({cart: cartReducer})
   ],
   exports: [
   ],
